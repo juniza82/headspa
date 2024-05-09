@@ -1,0 +1,21 @@
+spring:
+  security:
+    user:
+      name: headspa
+      password: headspa
+  jpa:
+    open-in-view: false
+
+springdoc:
+  swagger-ui:
+    version: v2
+    path: /swagger-ui.html
+    enabled: true
+  paths-to-exclude:
+    - /test/**
+    - /dev/**
+    - /settings/**
+    - /redis/**
+
+
+

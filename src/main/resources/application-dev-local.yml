@@ -1,0 +1,72 @@
+server:
+  port: 8090
+
+spring:
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # DEV
+    url: jdbc:log4jdbc:mysql://juniza82.synology.me:33077/yheadspa
+    username: admmin
+    password: Lej281500!
+    # STG
+#    url: jdbc:log4jdbc:postgresql://localhost:5435/hotel
+#    username: expedia_user
+#    password: HEKkc5AJITYPolr
+    # PROD
+#    url: jdbc:log4jdbc:postgresql://localhost:5436/hotel
+#    username: expedia_user
+#    password: $ygrTmutSeN8fmp
+    # elasticsearch:
+#    uris: 3.34.190.160:9201
+#    username: admin
+#    password: admin
+  autoconfigure:
+    exclude: org.opensearch.spring.boot.autoconfigure.OpenSearchRestClientAutoConfiguration
+  codec:
+    max-in-memory-size: 4096
+#  data:
+#    mongodb:
+#      uri: mongodb://3.34.190.160:27018/expedia
+#    redis:
+#      host: 3.34.190.160
+#      port: 6380
+#      database: 15
+
+  main:
+    allow-bean-definition-overriding: true
+
+api:
+  expedia:
+    url: https://test.ean.com
+    key: 3oemj3md0t5evnb9tubrad4ift
+    secret-key: 5vqg56m7ao12g
+
+springdoc:
+  swagger-ui:
+    version: v1
+    path: /swagger-ui.html
+    enabled: true
+  paths-to-exclude:
+    - /test/**
+    - /dev/**
+    - /settings/**
+    - /redis/**
+
+jwt:
+  secret-key: BMXDcZQGBFnKNYCYRgsIxiFQR
+
+
+logging:
+  level:
+    root: info
+#  slack:
+#    channel: hotel-error
+#    webhook-uri: https://hooks.slack.com/services/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
+#    channel-hotel-reservation: hotel-reservation-bot
+#    reservation-webhook-uri: https://hooks.slack.com/services/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

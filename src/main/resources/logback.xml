@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<!--
+	jdbc.
+	sqlonly    		: SQL문만을 로그로 남기며, PreparedStatement일 경우 관련된 argument 값으로 대체된 SQL문이 보여진다
+	sqltiming  		: SQL문과 해당 SQL을 실행시키는데 수행된 시간 정보(milliseconds)를 포함한다
+	audit      		: ResultSet을 제외한 모든 JDBC 호출 정보를 로그로 남긴다. JDBC 문제를 추적해야 할 필요가 있는 경우를 제외하고는 사용을 권장하지 않는다
+	resultset  		: ResultSet을 포함한 모든 JDBC 호출 정보를 로그로 남기므로 매우 방대한 양의 로그가 생성된다
+	resultsettable 	: SQL 결과 조회된 데이터의 table을 로그로 남긴다
+	connection 		: 접속 / 접속 종료 시 로그를 남긴다
+-->
+<configuration>
+
+    <!--<appender name="FILE_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/syslog.log</file>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss}:%-4relative][%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/logback.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                &lt;!&ndash; or whenever the file size reaches 100MB &ndash;&gt;
+                <maxFileSize>100MB</maxFileSize>
+                &lt;!&ndash; kb, mb, gb &ndash;&gt;
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+    </appender>-->
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%boldWhite([%d{yyyy-MM-dd HH:mm:ss}:%-4relative]) %magenta([%thread]) %highlight(%-5level) %cyan(%logger{35}) - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--
+    <springProperty name="SLACK_WEBHOOK_URI" source="logging.slack.webhook-uri"/>
+    <springProperty name="SLACK_CHANNEL" source="logging.slack.channel"/>
+    <appender name="SLACK_STAGE" class="com.github.maricn.logback.SlackAppender">
+        &lt;!&ndash; Slack API token // webhookurl이 있기 때문에 token은 사용하지 않는다. &ndash;&gt;
+        &lt;!&ndash; <token></token> &ndash;&gt;
+        &lt;!&ndash; Slack incoming webhook uri. Uncomment the lines below to use incoming webhook uri instead of API token. &ndash;&gt;
+        <webhookUri>${SLACK_WEBHOOK_URI}</webhookUri>
+        &lt;!&ndash; Channel that you want to post - default is #general &ndash;&gt;
+        <channel>${SLACK_CHANNEL}</channel>
+        &lt;!&ndash; Formatting (you can use Slack formatting - URL links, code formatting, etc.) &ndash;&gt;
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>[-&#45;&#45;STAGE-&#45;&#45;][%d{yyyy-MM-dd HH:mm:ss}:%-4relative][%thread] %-5level %logger{35} - %msg%n</pattern>
+        </layout>
+        &lt;!&ndash; Username of the messages sender &ndash;&gt;
+        <username>Hotel OTA</username>
+    </appender>-->
+
+    <!--<appender name="ASYNC_SLACK_STAGE" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="SLACK_STAGE"/>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+    </appender>-->
+
+    <!--<appender name="SLACK" class="com.github.maricn.logback.SlackAppender">
+        &lt;!&ndash; Slack API token // webhookurl이 있기 때문에 token은 사용하지 않는다. &ndash;&gt;
+        &lt;!&ndash; <token></token> &ndash;&gt;
+        &lt;!&ndash; Slack incoming webhook uri. Uncomment the lines below to use incoming webhook uri instead of API token. &ndash;&gt;
+        <webhookUri>${SLACK_WEBHOOK_URI}</webhookUri>
+        &lt;!&ndash; Channel that you want to post - default is #general &ndash;&gt;
+        <channel>${SLACK_CHANNEL}</channel>
+        &lt;!&ndash; Formatting (you can use Slack formatting - URL links, code formatting, etc.) &ndash;&gt;
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>[-&#45;&#45;PROD-&#45;&#45;][%d{yyyy-MM-dd HH:mm:ss}:%-4relative][%thread] %-5level %logger{35} - %msg%n</pattern>
+        </layout>
+        &lt;!&ndash; Username of the messages sender &ndash;&gt;
+        <username>Hotel OTA</username>
+    </appender>-->
+
+    <!--<appender name="ASYNC_SLACK" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="SLACK"/>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+    </appender>-->
+
+    <logger name="jdbc.sqlonly" level="DEBUG"/>
+    <logger name="jdbc.sqltiming" level="DEBUG"/>
+    <logger name="jdbc.audit" level="OFF"/>
+    <logger name="jdbc.resultset" level="OFF"/>
+    <logger name="jdbc.resultsettable" level="DEBUG"/>
+    <logger name="jdbc.connection" level="OFF"/>
+
+    <logger name="root" level="INFO"/>
+
+    <!-- 로컬 개발시 -->
+    <springProfile name="dev-local">
+        <root>
+            <appender-ref ref="STDOUT" />
+        </root>
+    </springProfile>
+
+    <springProfile name="stage-local">
+        <root>
+            <appender-ref ref="STDOUT" />
+        </root>
+    </springProfile>
+
+    <springProfile name="prod-local">
+        <root>
+            <appender-ref ref="STDOUT" />
+        </root>
+    </springProfile>
+
+    <!--  dev 서버용
+    <springProfile name="dev">
+        <root>
+            <appender-ref ref="STDOUT" />
+            <appender-ref ref="FILE_APPENDER" />
+        </root>
+    </springProfile> -->
+
+    <!-- stage 서버용
+    <springProfile name="stage">
+        <root>
+            <appender-ref ref="STDOUT" />
+            <appender-ref ref="ASYNC_SLACK_STAGE"/>
+        </root>
+    </springProfile> -->
+
+    <!-- prod 서버용
+    <springProfile name="prod">
+        <root>
+            <appender-ref ref="STDOUT" />
+            <appender-ref ref="ASYNC_SLACK"/>
+        </root>
+    </springProfile> -->
+
+</configuration>
