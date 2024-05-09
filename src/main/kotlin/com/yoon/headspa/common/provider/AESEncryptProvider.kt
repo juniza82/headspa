@@ -10,6 +10,7 @@ import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
+// 암,복호화 관련
 @Component
 class AESEncryptProvider(
     @Value("\${aes.key}")

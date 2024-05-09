@@ -9,10 +9,12 @@ spring:
         format_sql: true
         use_sql_comments: true
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: org.mariadb.jdbc.Driver
     # DEV
-    url: jdbc:log4jdbc:mysql://juniza82.synology.me:33077/yheadspa
-    username: admmin
+#    url: jdbc:log4jdbc:mysql://https://juniza82.synology.me:33077/yheadspa
+    url: jdbc:log4jdbc:mariadb://juniza82.synology.me:33077/yheadspa
+    username: juniza82
     password: Lej281500!
     # STG
 #    url: jdbc:log4jdbc:postgresql://localhost:5435/hotel
@@ -61,6 +63,9 @@ springdoc:
 jwt:
   secret-key: BMXDcZQGBFnKNYCYRgsIxiFQR
 
+aes:
+  key: HEADSPA_KEY_12345
+  iv: HEADSPA_IV_12345
 
 logging:
   level:

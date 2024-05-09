@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service
 
 @Service
 class SlackProvider(
-    @Value("\${logging.slack.reservation-webhook-uri}")
-    val hotelReservationWebhookUri: String,
+//    @Value("\${logging.slack.reservation-webhook-uri}")
+//    val hotelReservationWebhookUri: String,
     @Value("\${spring.profiles.active}")
     val profile: String,
 ) {
@@ -28,7 +28,7 @@ class SlackProvider(
 
     @PostConstruct
     fun init() {
-        slackApi = SlackApi(hotelReservationWebhookUri)
+//        slackApi = SlackApi(hotelReservationWebhookUri)
         slackExpediaReservationAttachment = SlackAttachment().apply {
             this.setFallback("Ok")
             this.setColor("good")
