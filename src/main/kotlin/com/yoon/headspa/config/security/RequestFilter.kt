@@ -35,7 +35,7 @@ class RequestFilter(
     private val swaggerUris = arrayOf("/swagger-ui", "/v3/api-docs")
     private val lifeCycleCheckUri = "/healthcheck"
     private val cacheUri = "/cache"
-    private val defaultEodingCommissionValue = 1.0
+    private val defaultHeadspaCommissionValue = 1.0
 
     @PostConstruct
     fun init() {
@@ -81,9 +81,10 @@ class RequestFilter(
                 headers[it] = request.getHeader(it)
             }
 
+            // TODO 필터를 어떻게 활용할지 고민
             log.error("유저와 공급사 정보를 확인 할 수 없습니다. : url - {}, headers - {}", uriStr, headers)
             setFailureResponse(response)
-            return
+//            return
         }
 
 //        SecurityContextHolder.getContext().authentication =

@@ -1,4 +1,4 @@
-package kr.co.eoding.hotelota.config.swagger
+package com.yoon.headspa.config.swagger
 
 import io.swagger.v3.oas.models.Components
 import io.swagger.v3.oas.models.OpenAPI

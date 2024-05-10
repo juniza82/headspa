@@ -29,7 +29,7 @@ class RequestLoggingAspect(
     private val log: Logger = LoggerFactory.getLogger(this.javaClass)
     private val dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
 
-    @Pointcut("execution(* kr.co.eoding.hotelota..*Controller.*(..))")
+    @Pointcut("execution(* com.yoon.headspa..*Controller.*(..))")
     fun logRequest() { }
 
     @Around("logRequest()")
