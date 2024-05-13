@@ -50,14 +50,16 @@ class RequestFilter(
 
         val uriStr: String = request.requestURI?.toString() ?: ""
 
-        if (isSwaggerUri(uriStr)
-            || uriStr == lifeCycleCheckUri
-            || uriStr.startsWith(cacheUri)
-        ) {
-            log.info("$uriStr : 페이지 접근 확인")
-            filterChain.doFilter(request, response)
-            return
-        }
+        println(uriStr)
+
+//        if (isSwaggerUri(uriStr)
+//            || uriStr == lifeCycleCheckUri
+//            || uriStr.startsWith(cacheUri)
+//        ) {
+//            log.info("$uriStr : 페이지 접근 확인")
+//            filterChain.doFilter(request, response)
+//            return
+//        }
 
         val userId = request.getHeader(USER_ID_KEY)
         val travelAgentId = request.getHeader(TRAVEL_AGENT_ID_KEY)
@@ -71,21 +73,21 @@ class RequestFilter(
         val phone = request.getHeader(PHONE_NUMBER_KEY)
         val jwtToken = request.getHeader(JWT_KEY)
 
-        if (
-            checkAgentInfoIsNull(userId, travelAgentId, companyName,
-            address, businessNum, callNum, fax, email, logo, phone)
-        || jwtToken.isEmpty()) {
-
-            val headers = mutableMapOf<String, String>()
-            request.headerNames.toList().map {
-                headers[it] = request.getHeader(it)
-            }
-
-            // TODO 필터를 어떻게 활용할지 고민
-            log.error("유저와 공급사 정보를 확인 할 수 없습니다. : url - {}, headers - {}", uriStr, headers)
-            setFailureResponse(response)
-//            return
-        }
+//        if (
+//            checkAgentInfoIsNull(userId, travelAgentId, companyName,
+//            address, businessNum, callNum, fax, email, logo, phone)
+//        || jwtToken.isEmpty()) {
+//
+//            val headers = mutableMapOf<String, String>()
+//            request.headerNames.toList().map {
+//                headers[it] = request.getHeader(it)
+//            }
+//
+//            // TODO 필터를 어떻게 활용할지 고민
+//            log.error("유저와 공급사 정보를 확인 할 수 없습니다. : url - {}, headers - {}", uriStr, headers)
+//            setFailureResponse(response)
+////            return
+//        }
 
 //        SecurityContextHolder.getContext().authentication =
 //            UsernamePasswordAuthenticationToken(

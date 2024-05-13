@@ -21,6 +21,7 @@ repositories {
 
 dependencies {
     implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.0")
+    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
@@ -37,7 +38,6 @@ dependencies {
     implementation ("org.springframework.boot:spring-boot-starter-data-redis")
 
     implementation("com.fasterxml.jackson.core:jackson-core:2.14.2")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
     implementation("org.apache.commons:commons-csv:1.8")
 
@@ -68,6 +68,7 @@ dependencies {
 //    runtimeOnly("com.mysql:mysql-connector-j")
     runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
 
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
