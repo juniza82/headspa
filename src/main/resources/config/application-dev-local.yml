@@ -15,7 +15,7 @@ spring:
 #    url: jdbc:log4jdbc:mysql://https://juniza82.synology.me:33077/yheadspa
     url: jdbc:log4jdbc:mariadb://juniza82.synology.me:33077/yheadspa
     username: juniza82
-    password: Lej281500!
+    password: Lej281500!@
     # STG
 #    url: jdbc:log4jdbc:postgresql://localhost:5435/hotel
 #    username: expedia_user
