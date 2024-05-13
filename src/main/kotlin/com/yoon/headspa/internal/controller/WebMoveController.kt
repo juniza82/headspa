@@ -15,12 +15,18 @@ class WebMoveController(
 
     private val log: Logger = LoggerFactory.getLogger(this.javaClass)
 
+    @GetMapping("/index")
+    @Operation(summary = "API 요약", description = "API 설명")
+    fun layout(model: Model):String {
+        return "view/layout"
+    }
+
     @GetMapping("/main")
     @Deprecated(message = "이건 스웨거에서 사용안할때 사용")
     @Operation(summary = "API 요약", description = "API 설명")
     fun welcome(model: Model):String {
         model.addAttribute("greeting", "Hello Thymeleaf!")
-        return "index"
+        return "main"
     }
 
     @GetMapping("/main2")
@@ -28,7 +34,7 @@ class WebMoveController(
     @Operation(summary = "API 요약", description = "API 설명")
     fun second(model: Model):String {
         model.addAttribute("greeting", "Hello Thymeleaf!")
-        return "sample-inner-page.html"
+        return "view/sample-inner-page"
     }
 
 
